@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class gun : MonoBehaviour {
 
-    
-
     public GameObject rayOriginObject;
     public GameObject lineOriginObject;
 
@@ -39,9 +37,15 @@ public class gun : MonoBehaviour {
             gunFiring = false;
         }
 
+        /*if (Input.GetKeyDown("r"))
+        {
+            //perhaps add a "look over shoulder" camera kinda thing
+        }*/
+
+
+
         if (gunFiring == true)
         {
-            //FireLaser();
             DrawLaser(FireLaserRecursive(rayOriginObject.transform.position, rayOriginObject.transform.forward, 0, new List<Vector3>()));
             lineRenderer.enabled = true;
         }
@@ -138,9 +142,9 @@ public class gun : MonoBehaviour {
 
     }
 
+    //Old function, probably remove later
     void FireLaser()
     {
-
 
         RaycastHit hit;
         Vector3 endPosition;

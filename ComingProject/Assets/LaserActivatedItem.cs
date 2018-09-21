@@ -4,21 +4,36 @@ using UnityEngine;
 
 public class LaserActivatedItem : MonoBehaviour {
 
-	// Use this for initialization
+    public Material offMaterial;
+    public Material onMaterial;
+
+    public GameObject connectedObject;
+
+    bool isOn;
+
+
 	void Start () {
 
         gameObject.layer = LayerMask.NameToLayer("LaserActivated");
-
-
+        isOn = false;
+        
     }
 	
-	// Update is called once per frame
 	void Update () {
 		
 	}
 
     public void HitByLaser()
     {
-        Debug.Log("You hit a laser activated object!");
+        
+        if(connectedObject != null && isOn == false)
+        {
+            isOn = true;
+            GetComponent<Renderer>().material = onMaterial;
+            connectedObject.GetComponent<Activatable>().AddActivation();
+        }
+        
     }
+
+
 }
