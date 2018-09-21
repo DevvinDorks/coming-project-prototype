@@ -6,7 +6,8 @@ public class gun : MonoBehaviour {
 
     
 
-    public GameObject rayOrigin;
+    public GameObject rayOriginObject;
+    public GameObject lineOriginObject;
 
     public LineRenderer lineRenderer;
     public float laserWidth;
@@ -52,14 +53,17 @@ public class gun : MonoBehaviour {
     void FireLaser()
     {
 
+        //Maybe raycast from camera to center instead, but then draw the line as gun to hitpoint
+
         RaycastHit hit;
         Vector3 endPosition;
 
-        Vector3 position = rayOrigin.transform.position;
-        Vector3 direction = rayOrigin.transform.forward;
+        Vector3 rayOrigin = rayOriginObject.transform.position;
+        Vector3 lineOrigin = lineOriginObject.transform.position;
+        Vector3 rayDirection = rayOriginObject.transform.forward;
 
         //Check if laser is hitting anything
-        if (Physics.Raycast(position, direction, out hit))
+        if (Physics.Raycast(rayOrigin, rayDirection, out hit))
         {
 
             //Check if the hit object is on the Reflective layer
@@ -67,10 +71,10 @@ public class gun : MonoBehaviour {
             {
                 //Reflect
                 lineRenderer.positionCount = 3;
-                lineRenderer.SetPosition(0, position);
+                lineRenderer.SetPosition(0, lineOrigin);
                 lineRenderer.SetPosition(1, hit.point);
 
-                Vector3 reflectDirection = Vector3.Reflect(direction, hit.normal);
+                Vector3 reflectDirection = Vector3.Reflect(rayDirection, hit.normal);
 
                 lineRenderer.SetPosition(2, reflectDirection * laserMaxLength);
             }
@@ -80,7 +84,7 @@ public class gun : MonoBehaviour {
                 endPosition = hit.point;
 
                 lineRenderer.positionCount = 2;
-                lineRenderer.SetPosition(0, position);
+                lineRenderer.SetPosition(0, lineOrigin);
                 lineRenderer.SetPosition(1, endPosition);
             }
 
@@ -88,10 +92,10 @@ public class gun : MonoBehaviour {
         else
         {
             //End beam at max laser distance
-            endPosition = direction * laserMaxLength;
+            endPosition = rayDirection * laserMaxLength;
 
             lineRenderer.positionCount = 2;
-            lineRenderer.SetPosition(0, position);
+            lineRenderer.SetPosition(0, lineOrigin);
             lineRenderer.SetPosition(1, endPosition);
 
             

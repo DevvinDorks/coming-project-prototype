@@ -113,6 +113,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &118206890 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100004, guid: c6453f8e1f814744d8b94e5a6d1f9942,
+    type: 2}
+  m_PrefabInternal: {fileID: 576824973}
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,7 +578,7 @@ GameObject:
   m_Component:
   - component: {fileID: 853955806}
   m_Layer: 0
-  m_Name: RayOrigin
+  m_Name: LineOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6038,7 +6043,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdc26e910b7baea43b04e666693211ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayOrigin: {fileID: 853955805}
+  rayOriginObject: {fileID: 118206890}
+  lineOriginObject: {fileID: 853955805}
   lineRenderer: {fileID: 1703154955}
   laserWidth: 0.1
   laserMaxLength: 1000
