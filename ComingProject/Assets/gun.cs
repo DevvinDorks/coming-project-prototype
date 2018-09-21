@@ -51,38 +51,53 @@ public class gun : MonoBehaviour {
 
     void FireLaser()
     {
+
         RaycastHit hit;
         Vector3 endPosition;
 
-        //Check if raycast hits any object
-        if (Physics.Raycast(rayOrigin.transform.position, rayOrigin.transform.forward, out hit, Mathf.Infinity))
+        Vector3 position = rayOrigin.transform.position;
+        Vector3 direction = rayOrigin.transform.forward;
+
+        //Check if laser is hitting anything
+        if (Physics.Raycast(position, direction, out hit))
         {
 
             //Check if the hit object is on the Reflective layer
             if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Reflective"))
             {
-                //Debug.DrawRay(rayOrigin.transform.position, rayOrigin.transform.forward * hit.distance, Color.yellow, 100.0f);
-                //Debug.Log("Hit a Reflective object");
+                //Reflect
+                lineRenderer.positionCount = 3;
+                lineRenderer.SetPosition(0, position);
+                lineRenderer.SetPosition(1, hit.point);
+
+                Vector3 reflectDirection = Vector3.Reflect(direction, hit.normal);
+
+                lineRenderer.SetPosition(2, reflectDirection * laserMaxLength);
             }
             else
             {
-                //Debug.Log("Hit an object");
+                //End beam at hit object
+                endPosition = hit.point;
+
+                lineRenderer.positionCount = 2;
+                lineRenderer.SetPosition(0, position);
+                lineRenderer.SetPosition(1, endPosition);
             }
 
-            endPosition = hit.point;
         }
         else
         {
-            //Debug.DrawRay(rayOrigin.transform.position, rayOrigin.transform.forward * 1000, Color.red, 100.0f);
+            //End beam at max laser distance
+            endPosition = direction * laserMaxLength;
 
-            //Render the line and have it end after the max distance
-            endPosition = rayOrigin.transform.forward * laserMaxLength;
+            lineRenderer.positionCount = 2;
+            lineRenderer.SetPosition(0, position);
+            lineRenderer.SetPosition(1, endPosition);
+
+            
         }
 
-        lineRenderer.SetPosition(0, rayOrigin.transform.position);
-        lineRenderer.SetPosition(1, endPosition);
 
-        
 
     }
 
