@@ -26,11 +26,15 @@ public class LaserActivatedItem : MonoBehaviour {
     public void HitByLaser()
     {
         
-        if(connectedObject != null && isOn == false)
+        if(isOn == false)
         {
             isOn = true;
             GetComponent<Renderer>().material = onMaterial;
-            connectedObject.GetComponent<Activatable>().AddActivation();
+
+            if (connectedObject != null)
+            {
+                connectedObject.GetComponent<Activatable>().AddActivation();
+            }
         }
         
     }
