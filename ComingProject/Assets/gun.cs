@@ -37,6 +37,11 @@ public class gun : MonoBehaviour {
             gunFiring = false;
         }
 
+        if (Input.GetKeyDown("e"))
+        {
+            UseObject();
+        }
+
         /*if (Input.GetKeyDown("r"))
         {
             //perhaps add a "look over shoulder" camera kinda thing
@@ -103,11 +108,13 @@ public class gun : MonoBehaviour {
 
 
             }
-            else if (hit.transform.gameObject.layer == LayerMask.NameToLayer("LaserActivated"))
+            else if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Switch"))
             {
-                LaserActivatedItem item = hit.transform.gameObject.GetComponent<LaserActivatedItem>();
-                item.HitByLaser();
-
+                Switch item = hit.transform.gameObject.GetComponent<Switch>();
+                if (item.switchType == Switch.SwitchType.ActivatedByLaser)
+                {
+                    item.Activate();
+                }
                 return linePoints;
             }
             else
@@ -138,6 +145,30 @@ public class gun : MonoBehaviour {
         for (int i = 0; i < linePoints.Count; i++)
         {
             lineRenderer.SetPosition(i, linePoints[i]);
+        }
+
+    }
+
+    void UseObject()
+    {
+        RaycastHit hit;
+        Vector3 rayOrigin = rayOriginObject.transform.position;
+        Vector3 rayDirection = rayOriginObject.transform.forward;
+
+        float playerReach = 2.0f;
+
+        if (Physics.Raycast(rayOrigin, rayDirection, out hit, playerReach))
+        {
+            //Debug.DrawRay(rayOrigin, rayDirection * playerReach, Color.green, 100.0f);
+            if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Switch"))
+            {
+                Switch item = hit.transform.gameObject.GetComponent<Switch>();
+                if (item.switchType == Switch.SwitchType.ActivatedByKeyPress)
+                {
+                    item.Activate();
+                }
+            }
+
         }
 
     }
@@ -175,8 +206,11 @@ public class gun : MonoBehaviour {
             }
             else if (hit.transform.gameObject.layer == LayerMask.NameToLayer("LaserActivated"))
             {
-                LaserActivatedItem item = hit.transform.gameObject.GetComponent<LaserActivatedItem>();
-                item.HitByLaser();
+                Switch item = hit.transform.gameObject.GetComponent<Switch>();
+                if (item.switchType == Switch.SwitchType.ActivatedByLaser)
+                {
+                    item.Activate();
+                }
             }
             else
             {

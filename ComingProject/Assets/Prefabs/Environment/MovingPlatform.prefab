@@ -9,46 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1270531037686908}
+  m_RootGameObject: {fileID: 1962517491564024}
   m_IsPrefabAsset: 1
---- !u!1 &1270531037686908
+--- !u!1 &1962517491564024
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4149023940168342}
-  - component: {fileID: 33661574979326592}
-  - component: {fileID: 23000250915692006}
-  - component: {fileID: 136100437830657732}
-  - component: {fileID: 114020061467074256}
-  m_Layer: 9
-  m_Name: MovingCylinder
+  - component: {fileID: 4227552318646166}
+  - component: {fileID: 33038540975035078}
+  - component: {fileID: 23438129025080846}
+  - component: {fileID: 65979365813802998}
+  - component: {fileID: 114658869663945956}
+  m_Layer: 0
+  m_Name: MovingPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4149023940168342
+--- !u!4 &4227552318646166
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1270531037686908}
+  m_GameObject: {fileID: 1962517491564024}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14, y: 4, z: -46.2}
-  m_LocalScale: {x: 2, y: 4, z: 2}
+  m_LocalPosition: {x: 29.502003, y: 0.05186462, z: 26.634197}
+  m_LocalScale: {x: 3, y: 0.1, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23000250915692006
+--- !u!23 &23438129025080846
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1270531037686908}
+  m_GameObject: {fileID: 1962517491564024}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -58,7 +58,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: f4563f467aac2f641bbbe9659a4f179d, type: 2}
+  - {fileID: 2100000, guid: f2b68236d65f9ec4a9fd1d07b8e579e7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78,42 +78,41 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33661574979326592
+--- !u!33 &33038540975035078
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1270531037686908}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114020061467074256
+  m_GameObject: {fileID: 1962517491564024}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &65979365813802998
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1962517491564024}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114658869663945956
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1270531037686908}
+  m_GameObject: {fileID: 1962517491564024}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 403c80d50f751984d9cd5e296a74d52f, type: 3}
+  m_Script: {fileID: 11500000, guid: e894883d21f253a4b9904273017d78c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectType: 0
-  activationAmount: 0
-  slideSpeed: 0.5
+  objectType: 1
+  activationAmount: 1
+  slideSpeed: 0
   binaryStartPosition: {x: 0, y: 0, z: 0}
   binaryEndPosition: {x: 0, y: 0, z: 0}
-  moveSpeed: 0
-  startPosition: {x: 0, y: 0, z: 0}
-  endPosition: {x: 0, y: 0, z: 0}
---- !u!136 &136100437830657732
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1270531037686908}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  moveSpeed: 0.5
+  startPosition: {x: 29.502, y: 0.05186462, z: 26.6342}
+  endPosition: {x: 29.502, y: 3.54, z: 26.6342}

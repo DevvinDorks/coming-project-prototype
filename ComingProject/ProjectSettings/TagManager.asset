@@ -15,8 +15,8 @@ TagManager:
   - 
   - PostProcessing
   - Reflective
-  - LaserActivated
-  - 
+  - Switch
+  - MovableObject
   - 
   - 
   - 
