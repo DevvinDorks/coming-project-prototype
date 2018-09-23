@@ -11,7 +11,7 @@ public class Switch : MonoBehaviour {
     [SerializeField] Material offMaterial;
     [SerializeField] Material onMaterial;
 
-    [SerializeField] GameObject connectedObject;
+    [SerializeField] List<GameObject> connectedObjects;
 
     //bool hitByLaser = false;
     bool isOn = false;
@@ -35,32 +35,37 @@ public class Switch : MonoBehaviour {
             //Debug.Log("Trying to turn off");
             isOn = false;
             GetComponent<Renderer>().material = offMaterial;
-            SwitchConnectedObject(false);
+            SwitchConnectedObjects(false);
         }
         else if (isOn == false)
         {
             //Debug.Log("Trying to turn on");
             isOn = true;
             GetComponent<Renderer>().material = onMaterial;
-            SwitchConnectedObject(true);
+            SwitchConnectedObjects(true);
         }
 
     }
 
-    void SwitchConnectedObject(bool turnOn)
+    void SwitchConnectedObjects(bool turnOn)
     {
-        if (connectedObject != null)
+        foreach (GameObject o in connectedObjects)
         {
-            if (turnOn)
+            if (o != null)
             {
-                connectedObject.GetComponent<MovableObject>().AddActivation();
-            }
-            else
-            {
-                connectedObject.GetComponent<MovableObject>().RemoveActivation();
-            }
+                if (turnOn)
+                {
+                    o.GetComponent<MovableObject>().AddActivation();
+                }
+                else
+                {
+                    o.GetComponent<MovableObject>().RemoveActivation();
+                }
 
+            }
         }
+
+        
     }
 
 }
